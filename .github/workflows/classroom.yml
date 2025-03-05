@@ -19,11 +19,10 @@ jobs:
     steps:
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
-            
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -56,10 +55,9 @@ jobs:
     steps:
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
     
       - name: Checkout code
         uses: actions/checkout@v3
@@ -127,10 +125,9 @@ jobs:
     steps:
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
     
       - name: Checkout code
         uses: actions/checkout@v3
@@ -167,10 +164,10 @@ jobs:
     steps:
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
+            docker rm -f sonarqube
     
       - name: Checkout code
         uses: actions/checkout@v3
@@ -279,10 +276,9 @@ jobs:
     steps:
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
     
       - name: Checkout code
         uses: actions/checkout@v3
@@ -337,6 +333,12 @@ jobs:
     outputs:
       commit_message_score: ${{ steps.calculate_accuracy.outputs.commit_message_score }}
     steps:
+      - name: Cleanup build folder
+        run: |
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
+    
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -404,10 +406,9 @@ jobs:
 
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -518,10 +519,9 @@ jobs:
 
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -707,10 +707,9 @@ jobs:
 
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -799,10 +798,9 @@ jobs:
     steps:
       - name: Cleanup build folder
         run: |
-            ls -la ./
-            rm -rf ./* || true
-            rm -rf ./.??* || true
-            ls -la ./
+            ls -la ../.././
+            rm -rf ../../section-*/ || true
+            ls -la ../.././
     
       - name: Checkout code
         uses: actions/checkout@v3
