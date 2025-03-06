@@ -20,7 +20,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire backend application code into the container
 COPY src/ /app/
-
+COPY tests/ /app/
 # Switch to the non-root user
 USER appuser
 
