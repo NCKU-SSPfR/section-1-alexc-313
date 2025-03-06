@@ -1,24 +1,29 @@
-# TODO: Install the backend dependency package into the app folder inside the container.
-
 # Use an official Python runtime as a parent image
 FROM python:3.11
 
-# Set the working directory inside the container to /app
+# Create a non-root user for security
+RUN useradd --create-home appuser
+
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the requirements.txt into the container at /app
-COPY ./requirements.txt /app/requirements.txt
+# Copy only necessary files to the container (avoid unnecessary files)
+COPY requirements.txt /app/
 
-# Install any needed dependencies (including uvicorn)
+# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the entire backend application code into the container
-COPY src/ /app
+# Copy only the relevant source code files
+COPY src/ /app/src/
 
-# Expose port 8000 for the backend app
+# Ensure the non-root user owns the directory
+RUN chown -R appuser:appuser /app
+
+# Switch to the non-root user
+USER appuser
+
+# Expose the FastAPI port
 EXPOSE 8000
 
-ENV PATH="/usr/local/bin:$PATH"
-
-# Set the default command to run the FastAPI app with uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+# Set the correct module path for Uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
