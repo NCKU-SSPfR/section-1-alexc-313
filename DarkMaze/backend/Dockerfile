@@ -1,5 +1,5 @@
 # Use an official Python runtime as a parent image
-FROM python:3.11
+FROM python:3.11-slim
 
 # Create a non-root user for security
 RUN useradd --create-home appuser
@@ -14,7 +14,7 @@ COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy only the relevant source code files
-COPY src/ /app/src/
+COPY src/ /app/
 
 # Ensure the non-root user owns the directory
 RUN chown -R appuser:appuser /app
