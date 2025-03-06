@@ -6,13 +6,13 @@ RUN useradd --create-home appuser
 
 WORKDIR /app
 
-RUN chown -R appuser /app
-
 COPY requirements.txt /app/
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ /app/
+
+RUN chown -R appuser /app
 
 USER appuser
 
