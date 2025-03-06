@@ -46,12 +46,9 @@ async def move_request(dir):
 @pytest.mark.asyncio
 async def test_integration():
     await login_request()
-    # print(game_state)
     await reset_request()
-    # print(game_state)
     for _ in range(5):
         await move_request("down")
-        # print(game_state)
     assert game_state["current_position"] == [1, 5]
 
 
