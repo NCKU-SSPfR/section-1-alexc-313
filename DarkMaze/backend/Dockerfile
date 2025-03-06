@@ -21,4 +21,4 @@ COPY --chown=myuser:myuser src/ /app
 EXPOSE 8000
 
 # Set the default command to run the FastAPI app with uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
