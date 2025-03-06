@@ -28,4 +28,4 @@ USER appuser
 EXPOSE 8088
 
 # Run the FastAPI app using uvicorn
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8088"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8088", "--reload"]
