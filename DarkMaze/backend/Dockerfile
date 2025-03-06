@@ -13,7 +13,7 @@ COPY ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire backend application code into the container
-COPY . /app
+COPY src/ /app
 
 # Expose port 8000 for the backend app
 EXPOSE 8000
