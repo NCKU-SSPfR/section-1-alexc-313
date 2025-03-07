@@ -1,17 +1,14 @@
-FROM python:3.11
-
-RUN groupadd -r appgroup && \
-    useradd -r -m -g appgroup -d /app appuser && \
-    chmod 775 /app
-
+FROM python:3.11-slim
 WORKDIR /app
 
-COPY --chown=appuser:appgroup ./requirements.txt /app/requirements.txt
-
+COPY ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-COPY --chown=appuser:appgroup ./src /app/src
+RUN useradd -m -u 1000 myuser
+RUN chown -R myuser:myuser /app
 
-USER appuser
+COPY --chown=myuser:myuser ./src/ /app/src
+USER myuser
 
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+EXPOSE 8000
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
