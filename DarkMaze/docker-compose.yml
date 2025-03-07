@@ -62,15 +62,13 @@ services:
     networks:
       - sonar-network
 
-    backend:
+  backend:
     # TODO:
     # 1. Create a container using the backend image.  
     # 2. Map the files in the backend folder to the /app folder inside the container.  
     # 3. Map port 8000 in the container to port 8000 on the host machine.
     build:
       context: ./backend
-    volumes:
-      - ./backend/src:/app/src
     container_name: backend
     ports:
       - "8000:8000"
