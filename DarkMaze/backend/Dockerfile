@@ -16,9 +16,9 @@ USER myuser
 
 # Copy the entire backend application code into the container
 # COPY --chown=myuser:myuser ./src/ /app/
-# RUN chmod -R u+rX /app
 # Expose port 8000 for the backend app
+RUN chown -R myuser:myuser /backend
 EXPOSE 8000
 
 # Set the default command to run the FastAPI app with uvicorn
-CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
