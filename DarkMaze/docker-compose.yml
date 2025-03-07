@@ -63,19 +63,13 @@ services:
       - sonar-network
 
   backend:
-    # TODO:
-    # 1. Create a container using the backend image.  
-    # 2. Map the files in the backend folder to the /app folder inside the container.  
-    # 3. Map port 8000 in the container to port 8000 on the host machine.
-    build:
-      context: ./backend
-    container_name: backend
+    build: ./backend
+    volumes:
+      - ./backend/src:/app/src
     ports:
       - "8000:8000"
     depends_on:
       - db
-    volumes:
-      - ./backend:/app
     networks:
       - sonar-network
     restart: always
@@ -99,6 +93,7 @@ services:
       - sonar-network
     restart: always
     command: uvicorn src.main:app --host "0.0.0.0" --port 8088 --reload
+  
 
 networks:
   sonar-network:
