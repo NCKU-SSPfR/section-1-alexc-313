@@ -11,7 +11,7 @@ COPY ./requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Create a non-root user and switch to it
-RUN useradd -m myuser
+RUN useradd -m -u 1000 myuser
 USER myuser
 
 # Copy the entire backend application code into the container
