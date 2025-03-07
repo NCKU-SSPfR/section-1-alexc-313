@@ -62,22 +62,6 @@ services:
     networks:
       - sonar-network
 
-  frontend: 
-    # TODO:
-    # 1. Create a container using the frontend image.  
-    # 2. Map the files in the frontend folder to the /app folder inside the container.  
-    # 3. Map port 8088 in the container to port 8088 on the host machine.
-    build:
-      context: ./frontend
-    container_name: frontend
-    ports:
-      - "8088:8088"
-    volumes:
-      - ./frontend:/app
-    networks:
-      - sonar-network
-    command: uvicorn src.main:app --host "0.0.0.0" --port 8088 --reload
-
   backend:
     # TODO:
     # 1. Create a container using the backend image.  
@@ -88,11 +72,33 @@ services:
     container_name: backend
     ports:
       - "8000:8000"
+    depends_on:
+      - db
     volumes:
       - ./backend:/app
     networks:
       - sonar-network
+    restart: always
     command: uvicorn src.main:app --host "0.0.0.0" --port 8000
+    
+  frontend: 
+    # TODO:
+    # 1. Create a container using the frontend image.  
+    # 2. Map the files in the frontend folder to the /app folder inside the container.  
+    # 3. Map port 8088 in the container to port 8088 on the host machine.
+    build:
+      context: ./frontend
+    container_name: frontend
+    ports:
+      - "8088:8088"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+    networks:
+      - sonar-network
+    restart: always
+    command: uvicorn src.main:app --host "0.0.0.0" --port 8088 --reload
 
 networks:
   sonar-network:
