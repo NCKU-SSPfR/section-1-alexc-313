@@ -16,7 +16,7 @@ USER myuser
 
 # Copy the entire backend application code into the container
 COPY --chown=myuser:myuser src/ /app
-
+RUN chmod -R u+rX /app
 # Expose port 8000 for the backend app
 EXPOSE 8000
 
