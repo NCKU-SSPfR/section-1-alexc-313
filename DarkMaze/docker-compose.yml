@@ -69,6 +69,8 @@ services:
     # 3. Map port 8000 in the container to port 8000 on the host machine.
     build:
       context: ./backend
+    volumes:
+      - ./backend/src:/app/src
     container_name: backend
     ports:
       - "8000:8000"
